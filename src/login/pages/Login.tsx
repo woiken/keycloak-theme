@@ -23,8 +23,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AlertOctagon, AlertTriangle, CircleCheck, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import Logo from "../assets/logo_phase_slash.svg";
-
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
   const { kcContext, i18n, doUseDefaultCss, classes } = props;
 
@@ -112,11 +110,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
         {/* Form Content */}
         <div className="flex-1 flex items-center justify-center p-6 md:p-10">
           <div className="w-full max-w-md">
-            {/* Logo */}
-            <div className="mb-8">
-              <img src={Logo} alt="Logo" className="w-full h-auto max-w-2xl max-h-12" />
-            </div>
-
             <Card className="flex flex-col gap-6 border-0 shadow-none lg:border lg:shadow-sm">
               <CardHeader className="pb-0">
                 <CardTitle id="kc-page-title" className="text-2xl">

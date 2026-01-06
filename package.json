@@ -1,6 +1,6 @@
 {
-  "name": "keycloakify-starter",
-  "version": "0.0.0",
+  "name": "woiken-id-theme",
+  "version": "0.1.0",
   "description": "Starter for Keycloakify 11",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "keycloakify": "^11.13.2",
+    "keycloakify": "^11.13.6",
     "lucide-react": "^0.533.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
