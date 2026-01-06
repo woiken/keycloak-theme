@@ -17,7 +17,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     kcContext,
     doUseDefaultCss,
     classes,
-    children
+    children,
+    active: _active
   } = props;
 
   const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
