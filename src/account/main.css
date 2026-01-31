@@ -43,86 +43,87 @@
 
 :root {
   --radius: 0.625rem;
-  /* Turf Green - Primary colors */
-  --background: #ffffff;
-  --foreground: #112214;
+  /* Neutral slate palette */
+  --background: #fafafa;
+  --foreground: #18181b;
   --card: #ffffff;
-  --card-foreground: #112214;
+  --card-foreground: #18181b;
   --popover: #ffffff;
-  --popover-foreground: #112214;
-  --primary: #55aa66;
+  --popover-foreground: #18181b;
+  /* Slate blue primary */
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  /* Fern - Secondary colors */
-  --secondary: #7ea659;
-  --secondary-foreground: #ffffff;
-  /* Turf Green light shades for muted */
-  --muted: #eef6f0;
-  --muted-foreground: #33663d;
-  /* Cool Sky - Accent colors */
-  --accent: #0590fa;
+  /* Subtle secondary */
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  /* Muted grays */
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  /* Accent matches primary for consistency */
+  --accent: #3b82f6;
   --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  /* Turf Green light shades for borders */
-  --border: #ddeee0;
-  --input: #ddeee0;
-  --ring: #55aa66;
-  /* Chart colors using the palette */
-  --chart-1: #55aa66; /* Turf Green */
-  --chart-2: #0590fa; /* Cool Sky */
-  --chart-3: #38c79c; /* Evergreen */
-  --chart-4: #7ea659; /* Fern */
-  --chart-5: #0195fe; /* Brilliant Azure */
+  --destructive: #ef4444;
+  /* Neutral borders */
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #3b82f6;
+  /* Chart colors */
+  --chart-1: #3b82f6;
+  --chart-2: #8b5cf6;
+  --chart-3: #06b6d4;
+  --chart-4: #10b981;
+  --chart-5: #f59e0b;
   /* Sidebar colors */
-  --sidebar: #eef6f0;
-  --sidebar-foreground: #112214;
-  --sidebar-primary: #55aa66;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #3b82f6;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #7ea659;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #ddeee0;
-  --sidebar-ring: #55aa66;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #3b82f6;
 }
 
 .dark {
-  /* Pitch Black - Dark mode background */
-  --background: #16120d;
-  --foreground: #ece6df;
-  --card: #201a13;
-  --card-foreground: #ece6df;
-  --popover: #201a13;
-  --popover-foreground: #ece6df;
-  /* Turf Green - Primary stays consistent */
-  --primary: #77bb85;
-  --primary-foreground: #112214;
-  /* Fern - Secondary */
-  --secondary: #98b87a;
-  --secondary-foreground: #192112;
-  /* Muted using pitch black shades */
-  --muted: #403426;
-  --muted-foreground: #c6b49f;
-  /* Cool Sky - Accent */
-  --accent: #37a6fb;
-  --accent-foreground: #011d32;
+  /* Dark mode */
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  /* Slate blue primary */
+  --primary: #60a5fa;
+  --primary-foreground: #18181b;
+  /* Secondary */
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  /* Muted */
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  /* Accent matches primary */
+  --accent: #60a5fa;
+  --accent-foreground: #18181b;
   --destructive: #ef4444;
   /* Borders */
-  --border: #403426;
-  --input: #403426;
-  --ring: #77bb85;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #60a5fa;
   /* Chart colors */
-  --chart-1: #77bb85;
-  --chart-2: #37a6fb;
-  --chart-3: #60d2b0;
-  --chart-4: #98b87a;
-  --chart-5: #34aafe;
+  --chart-1: #60a5fa;
+  --chart-2: #a78bfa;
+  --chart-3: #22d3ee;
+  --chart-4: #34d399;
+  --chart-5: #fbbf24;
   /* Sidebar */
-  --sidebar: #201a13;
-  --sidebar-foreground: #ece6df;
-  --sidebar-primary: #77bb85;
-  --sidebar-primary-foreground: #112214;
-  --sidebar-accent: #98b87a;
-  --sidebar-accent-foreground: #192112;
-  --sidebar-border: #403426;
-  --sidebar-ring: #77bb85;
+  --sidebar: #18181b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #60a5fa;
+  --sidebar-primary-foreground: #18181b;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: #60a5fa;
 }
 
 @layer base {

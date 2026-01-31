@@ -4,17 +4,34 @@ import type { I18n } from "../i18n";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { AvatarUpload } from "@/components/AvatarUpload";
+import { Separator } from "@/components/ui/separator";
 
 export default function Account(props: PageProps<Extract<KcContext, { pageId: "account.ftl" }>, I18n>) {
   const { kcContext, i18n } = props;
   const { url, realm, messagesPerField, account } = kcContext;
   const { msg } = i18n;
 
+  // Extract realm name from URL (e.g., /realms/myrealm/account)
+  const getRealmName = (): string => {
+    const match = url.accountUrl.match(/\/realms\/([^/]+)/);
+    return match?.[1] ?? "master";
+  };
+
   return (
     <form action={url.accountUrl} method="post">
       <input type="hidden" name="stateChecker" value={kcContext.stateChecker} />
 
       <div className="space-y-6">
+        {/* Avatar upload section */}
+        <AvatarUpload
+          realm={getRealmName()}
+          firstName={account.firstName ?? undefined}
+          lastName={account.lastName ?? undefined}
+        />
+
+        <Separator />
+
         {/* Username field - only editable if allowed */}
         {realm.editUsernameAllowed ? (
           <div className="space-y-2">

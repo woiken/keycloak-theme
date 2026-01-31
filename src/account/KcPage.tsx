@@ -9,6 +9,8 @@ import "./main.css";
 
 const Account = lazy(() => import("./pages/Account"));
 const Password = lazy(() => import("./pages/Password"));
+const Sessions = lazy(() => import("./pages/Sessions"));
+const Applications = lazy(() => import("./pages/Applications"));
 
 export default function KcPage(props: { kcContext: KcContext }) {
   const { kcContext } = props;
@@ -47,6 +49,42 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 active="password"
               >
                 <Password
+                  kcContext={kcContext}
+                  i18n={i18n}
+                  doUseDefaultCss={false}
+                  classes={classes}
+                  Template={Template}
+                />
+              </Template>
+            );
+          case "sessions.ftl":
+            return (
+              <Template
+                kcContext={kcContext}
+                i18n={i18n}
+                doUseDefaultCss={false}
+                classes={classes}
+                active="sessions"
+              >
+                <Sessions
+                  kcContext={kcContext}
+                  i18n={i18n}
+                  doUseDefaultCss={false}
+                  classes={classes}
+                  Template={Template}
+                />
+              </Template>
+            );
+          case "applications.ftl":
+            return (
+              <Template
+                kcContext={kcContext}
+                i18n={i18n}
+                doUseDefaultCss={false}
+                classes={classes}
+                active="applications"
+              >
+                <Applications
                   kcContext={kcContext}
                   i18n={i18n}
                   doUseDefaultCss={false}

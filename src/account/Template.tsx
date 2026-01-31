@@ -18,7 +18,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     doUseDefaultCss,
     classes,
     children,
-    active: _active
+    active
   } = props;
 
   const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
@@ -47,28 +47,28 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       label: "Account",
       icon: UserCircle,
       url: url.accountUrl,
-      active: kcContext.pageId === "account.ftl"
+      isActive: active === "account"
     },
     {
       id: "password",
       label: "Password",
       icon: Lock,
       url: url.passwordUrl,
-      active: kcContext.pageId === "password.ftl"
+      isActive: active === "password"
     },
     {
       id: "sessions",
       label: "Sessions",
       icon: Monitor,
       url: url.sessionsUrl,
-      active: kcContext.pageId === "sessions.ftl"
+      isActive: active === "sessions"
     },
     {
       id: "applications",
       label: "Applications",
       icon: AppWindow,
       url: url.applicationsUrl,
-      active: kcContext.pageId === "applications.ftl"
+      isActive: active === "applications"
     }
   ];
 
@@ -116,11 +116,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 return (
                   <Button
                     key={item.id}
-                    variant={item.active ? "secondary" : "ghost"}
-                    className={clsx(
-                      "justify-start",
-                      item.active && "bg-secondary"
-                    )}
+                    variant={item.isActive ? "default" : "ghost"}
+                    className="justify-start"
                     asChild
                   >
                     <a href={item.url}>
