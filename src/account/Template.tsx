@@ -1,4 +1,3 @@
-import { clsx } from "keycloakify/tools/clsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { TemplateProps } from "keycloakify/account/TemplateProps";
 import { getKcClsx } from "keycloakify/account/lib/kcClsx";
@@ -8,9 +7,24 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertOctagon, AlertTriangle, CircleCheck, Info, UserCircle, Lock, Monitor, AppWindow, LogOut } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarSeparator,
+  SidebarTrigger
+} from "@/components/ui/sidebar";
+import { AlertOctagon, AlertTriangle, CircleCheck, Info, UserCircle, Lock, Monitor, AppWindow, LogOut, ArrowLeft } from "lucide-react";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -72,86 +86,115 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
   ];
 
+  const activeItem = navigationItems.find(item => item.isActive);
+
+  const displayName = [account.firstName, account.lastName].filter(Boolean).join(" ") || account.username || "";
+  const initials =
+    [account.firstName, account.lastName]
+      .filter(Boolean)
+      .map(name => name!.charAt(0).toUpperCase())
+      .join("") ||
+    account.username?.charAt(0).toUpperCase() ||
+    "";
+
   return (
-    <div className={clsx("min-h-screen bg-background", kcClsx("kcBodyClass"))}>
-      {/* Header */}
-      <header className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Account Management</h1>
-              <p className="text-sm text-muted-foreground">Manage your account settings</p>
-            </div>
-            <div className="flex items-center gap-4">
-              {account.username && (
-                <div className="text-sm">
-                  <span className="text-muted-foreground">Signed in as: </span>
-                  <span className="font-medium">{account.username}</span>
+    <SidebarProvider>
+      <Sidebar variant="inset">
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="lg" className="pointer-events-none">
+                <div className="flex aspect-square size-9 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sm font-semibold text-sidebar-primary-foreground">
+                  {initials || <UserCircle className="size-5" />}
                 </div>
-              )}
-              {referrer?.url && (
-                <Button variant="outline" asChild>
-                  <a href={referrer.url}>Back to {referrer.name}</a>
-                </Button>
-              )}
-              <Button variant="outline" asChild>
+                <div className="flex min-w-0 flex-col leading-tight">
+                  <span className="truncate font-medium">{displayName}</span>
+                  {account.email && <span className="truncate text-xs text-sidebar-foreground/60">{account.email}</span>}
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+
+        <SidebarSeparator />
+
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Settings</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {navigationItems.map(item => {
+                  const Icon = item.icon;
+                  return (
+                    <SidebarMenuItem key={item.id}>
+                      <SidebarMenuButton asChild isActive={item.isActive}>
+                        <a href={item.url}>
+                          <Icon />
+                          <span>{item.label}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+
+        <SidebarFooter>
+          <SidebarMenu>
+            {referrer?.url && (
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <a href={referrer.url}>
+                    <ArrowLeft />
+                    <span>Back to {referrer.name}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )}
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
                 <a href={url.getLogoutUrl()}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Sign Out
+                  <LogOut />
+                  <span>Sign Out</span>
                 </a>
-              </Button>
-            </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
+      </Sidebar>
+
+      <SidebarInset>
+        {/* Top bar */}
+        <header className="flex h-16 shrink-0 items-center gap-3 border-b px-4 sm:px-6">
+          <SidebarTrigger className="-ml-1" />
+          <div className="min-w-0">
+            <h1 className="truncate text-lg font-semibold">{activeItem?.label ?? "Account Management"}</h1>
+            <p className="hidden text-xs text-muted-foreground sm:block">Manage your account settings</p>
           </div>
-        </div>
-      </header>
+          <ThemeToggle className="ml-auto" />
+        </header>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
-          {/* Sidebar Navigation */}
-          <aside className="space-y-2">
-            <nav className="flex flex-col gap-1">
-              {navigationItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Button
-                    key={item.id}
-                    variant={item.isActive ? "default" : "ghost"}
-                    className="justify-start"
-                    asChild
-                  >
-                    <a href={item.url}>
-                      <Icon className="mr-2 h-4 w-4" />
-                      {item.label}
-                    </a>
-                  </Button>
-                );
-              })}
-            </nav>
-          </aside>
+        {/* Content */}
+        <main className="flex-1 px-4 py-8 sm:px-6">
+          <div className="mx-auto max-w-3xl space-y-6">
+            {/* Alert Messages */}
+            {message !== undefined && (
+              <Alert variant={message.type}>
+                {message.type === "success" && <CircleCheck />}
+                {message.type === "warning" && <AlertTriangle />}
+                {message.type === "error" && <AlertOctagon />}
+                {message.type === "info" && <Info />}
+                <AlertDescription>{kcSanitize(message.summary)}</AlertDescription>
+              </Alert>
+            )}
 
-          {/* Main Content Area */}
-          <main>
-            <Card>
-              <CardContent className="space-y-6 pt-6">
-                {/* Alert Messages */}
-                {message !== undefined && (
-                  <Alert variant={message.type}>
-                    {message.type === "success" && <CircleCheck />}
-                    {message.type === "warning" && <AlertTriangle />}
-                    {message.type === "error" && <AlertOctagon />}
-                    {message.type === "info" && <Info />}
-                    <AlertDescription>{kcSanitize(message.summary)}</AlertDescription>
-                  </Alert>
-                )}
-
-                {/* Page Content */}
-                {children}
-              </CardContent>
-            </Card>
-          </main>
-        </div>
-      </div>
-    </div>
+            {/* Page Content */}
+            {children}
+          </div>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

@@ -43,87 +43,87 @@
 
 :root {
   --radius: 0.625rem;
-  /* Neutral slate palette */
-  --background: #fafafa;
-  --foreground: #18181b;
+  /* Aurora Violet - derived from wallpaper */
+  --background: #faf9fd;
+  --foreground: #1f1a3d;
   --card: #ffffff;
-  --card-foreground: #18181b;
+  --card-foreground: #1f1a3d;
   --popover: #ffffff;
-  --popover-foreground: #18181b;
-  /* Slate blue primary */
-  --primary: #3b82f6;
+  --popover-foreground: #1f1a3d;
+  /* Violet primary */
+  --primary: #6d4fc7;
   --primary-foreground: #ffffff;
-  /* Subtle secondary */
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
-  /* Muted grays */
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  /* Accent matches primary for consistency */
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
+  /* Subtle lavender secondary */
+  --secondary: #f0edfa;
+  --secondary-foreground: #2f2a5e;
+  /* Lavender mist muted */
+  --muted: #f3f1fb;
+  --muted-foreground: #5d568a;
+  /* Soft lavender accent */
+  --accent: #ece6fa;
+  --accent-foreground: #4a3a8f;
   --destructive: #ef4444;
-  /* Neutral borders */
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #3b82f6;
+  /* Lavender-tinted borders */
+  --border: #e7e1f5;
+  --input: #e7e1f5;
+  --ring: #6d4fc7;
   /* Chart colors */
-  --chart-1: #3b82f6;
-  --chart-2: #8b5cf6;
-  --chart-3: #06b6d4;
-  --chart-4: #10b981;
-  --chart-5: #f59e0b;
+  --chart-1: #6d4fc7; /* Violet */
+  --chart-2: #2f2a6b; /* Indigo Navy */
+  --chart-3: #e88ab8; /* Blush Pink */
+  --chart-4: #f0c98a; /* Warm Cream */
+  --chart-5: #9b7fe0; /* Light Purple */
   /* Sidebar colors */
-  --sidebar: #fafafa;
-  --sidebar-foreground: #18181b;
-  --sidebar-primary: #3b82f6;
+  --sidebar: #f3f1fb;
+  --sidebar-foreground: #1f1a3d;
+  --sidebar-primary: #6d4fc7;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f4f4f5;
-  --sidebar-accent-foreground: #18181b;
-  --sidebar-border: #e4e4e7;
-  --sidebar-ring: #3b82f6;
+  --sidebar-accent: #ece6fa;
+  --sidebar-accent-foreground: #4a3a8f;
+  --sidebar-border: #e7e1f5;
+  --sidebar-ring: #6d4fc7;
 }
 
 .dark {
-  /* Dark mode */
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card: #18181b;
-  --card-foreground: #fafafa;
-  --popover: #18181b;
-  --popover-foreground: #fafafa;
-  /* Slate blue primary */
-  --primary: #60a5fa;
-  --primary-foreground: #18181b;
+  /* Deep Indigo Night - dark waves of the wallpaper */
+  --background: #15132b;
+  --foreground: #e9e5f7;
+  --card: #1d1a38;
+  --card-foreground: #e9e5f7;
+  --popover: #1d1a38;
+  --popover-foreground: #e9e5f7;
+  /* Light violet primary */
+  --primary: #9b7fe0;
+  --primary-foreground: #15132b;
   /* Secondary */
-  --secondary: #27272a;
-  --secondary-foreground: #fafafa;
+  --secondary: #2a2750;
+  --secondary-foreground: #e9e5f7;
   /* Muted */
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  /* Accent matches primary */
-  --accent: #60a5fa;
-  --accent-foreground: #18181b;
+  --muted: #2a2750;
+  --muted-foreground: #b3abd6;
+  /* Indigo accent */
+  --accent: #2f2a5e;
+  --accent-foreground: #d6cdf5;
   --destructive: #ef4444;
   /* Borders */
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #60a5fa;
+  --border: #2f2c54;
+  --input: #2f2c54;
+  --ring: #9b7fe0;
   /* Chart colors */
-  --chart-1: #60a5fa;
-  --chart-2: #a78bfa;
-  --chart-3: #22d3ee;
-  --chart-4: #34d399;
-  --chart-5: #fbbf24;
+  --chart-1: #9b7fe0;
+  --chart-2: #4a4391;
+  --chart-3: #e898be;
+  --chart-4: #f0c98a;
+  --chart-5: #6d4fc7;
   /* Sidebar */
-  --sidebar: #18181b;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #60a5fa;
-  --sidebar-primary-foreground: #18181b;
-  --sidebar-accent: #27272a;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #27272a;
-  --sidebar-ring: #60a5fa;
+  --sidebar: #1d1a38;
+  --sidebar-foreground: #e9e5f7;
+  --sidebar-primary: #9b7fe0;
+  --sidebar-primary-foreground: #15132b;
+  --sidebar-accent: #2f2a5e;
+  --sidebar-accent-foreground: #d6cdf5;
+  --sidebar-border: #2f2c54;
+  --sidebar-ring: #9b7fe0;
 }
 
 @layer base {

@@ -43,86 +43,87 @@
 
 :root {
   --radius: 0.625rem;
-  /* Turf Green - Primary colors */
+  /* Aurora Violet - derived from wallpaper */
   --background: #ffffff;
-  --foreground: #112214;
+  --foreground: #1f1a3d;
   --card: #ffffff;
-  --card-foreground: #112214;
+  --card-foreground: #1f1a3d;
   --popover: #ffffff;
-  --popover-foreground: #112214;
-  --primary: #55aa66;
+  --popover-foreground: #1f1a3d;
+  /* Violet - Primary */
+  --primary: #6d4fc7;
   --primary-foreground: #ffffff;
-  /* Fern - Secondary colors */
-  --secondary: #7ea659;
-  --secondary-foreground: #ffffff;
-  /* Turf Green light shades for muted */
-  --muted: #eef6f0;
-  --muted-foreground: #33663d;
-  /* Cool Sky - Accent colors */
-  --accent: #0590fa;
-  --accent-foreground: #ffffff;
+  /* Blush Pink - Secondary */
+  --secondary: #e88ab8;
+  --secondary-foreground: #3d1c2e;
+  /* Lavender mist for muted */
+  --muted: #f3f1fb;
+  --muted-foreground: #5d568a;
+  /* Soft lavender accent for hover states */
+  --accent: #ece6fa;
+  --accent-foreground: #4a3a8f;
   --destructive: #dc2626;
-  /* Turf Green light shades for borders */
-  --border: #ddeee0;
-  --input: #ddeee0;
-  --ring: #55aa66;
+  /* Lavender-tinted borders */
+  --border: #e7e1f5;
+  --input: #c4b8e6;
+  --ring: #6d4fc7;
   /* Chart colors using the palette */
-  --chart-1: #55aa66; /* Turf Green */
-  --chart-2: #0590fa; /* Cool Sky */
-  --chart-3: #38c79c; /* Evergreen */
-  --chart-4: #7ea659; /* Fern */
-  --chart-5: #0195fe; /* Brilliant Azure */
+  --chart-1: #6d4fc7; /* Violet */
+  --chart-2: #2f2a6b; /* Indigo Navy */
+  --chart-3: #e88ab8; /* Blush Pink */
+  --chart-4: #f0c98a; /* Warm Cream */
+  --chart-5: #9b7fe0; /* Light Purple */
   /* Sidebar colors */
-  --sidebar: #eef6f0;
-  --sidebar-foreground: #112214;
-  --sidebar-primary: #55aa66;
+  --sidebar: #f3f1fb;
+  --sidebar-foreground: #1f1a3d;
+  --sidebar-primary: #6d4fc7;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #7ea659;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #ddeee0;
-  --sidebar-ring: #55aa66;
+  --sidebar-accent: #ece6fa;
+  --sidebar-accent-foreground: #4a3a8f;
+  --sidebar-border: #e7e1f5;
+  --sidebar-ring: #6d4fc7;
 }
 
 .dark {
-  /* Pitch Black - Dark mode background */
-  --background: #16120d;
-  --foreground: #ece6df;
-  --card: #201a13;
-  --card-foreground: #ece6df;
-  --popover: #201a13;
-  --popover-foreground: #ece6df;
-  /* Turf Green - Primary stays consistent */
-  --primary: #77bb85;
-  --primary-foreground: #112214;
-  /* Fern - Secondary */
-  --secondary: #98b87a;
-  --secondary-foreground: #192112;
-  /* Muted using pitch black shades */
-  --muted: #403426;
-  --muted-foreground: #c6b49f;
-  /* Cool Sky - Accent */
-  --accent: #37a6fb;
-  --accent-foreground: #011d32;
+  /* Deep Indigo Night - dark waves of the wallpaper */
+  --background: #15132b;
+  --foreground: #e9e5f7;
+  --card: #1d1a38;
+  --card-foreground: #e9e5f7;
+  --popover: #1d1a38;
+  --popover-foreground: #e9e5f7;
+  /* Light Violet - Primary */
+  --primary: #9b7fe0;
+  --primary-foreground: #15132b;
+  /* Blush Pink - Secondary */
+  --secondary: #e898be;
+  --secondary-foreground: #2a1320;
+  /* Muted indigo shades */
+  --muted: #2a2750;
+  --muted-foreground: #b3abd6;
+  /* Indigo accent for hover states */
+  --accent: #2f2a5e;
+  --accent-foreground: #d6cdf5;
   --destructive: #ef4444;
   /* Borders */
-  --border: #403426;
-  --input: #403426;
-  --ring: #77bb85;
+  --border: #2f2c54;
+  --input: #4a4576;
+  --ring: #9b7fe0;
   /* Chart colors */
-  --chart-1: #77bb85;
-  --chart-2: #37a6fb;
-  --chart-3: #60d2b0;
-  --chart-4: #98b87a;
-  --chart-5: #34aafe;
+  --chart-1: #9b7fe0;
+  --chart-2: #4a4391;
+  --chart-3: #e898be;
+  --chart-4: #f0c98a;
+  --chart-5: #6d4fc7;
   /* Sidebar */
-  --sidebar: #201a13;
-  --sidebar-foreground: #ece6df;
-  --sidebar-primary: #77bb85;
-  --sidebar-primary-foreground: #112214;
-  --sidebar-accent: #98b87a;
-  --sidebar-accent-foreground: #192112;
-  --sidebar-border: #403426;
-  --sidebar-ring: #77bb85;
+  --sidebar: #1d1a38;
+  --sidebar-foreground: #e9e5f7;
+  --sidebar-primary: #9b7fe0;
+  --sidebar-primary-foreground: #15132b;
+  --sidebar-accent: #2f2a5e;
+  --sidebar-accent-foreground: #d6cdf5;
+  --sidebar-border: #2f2c54;
+  --sidebar-ring: #9b7fe0;
 }
 
 @layer base {
