@@ -11,12 +11,14 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertOctagon, AlertTriangle, CircleCheck, Info } from "lucide-react";
+
+import wallpaper from "../assets/wallpaper.jpg";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
   UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -85,18 +87,17 @@ export default function Register(props: RegisterProps) {
 
   return (
     <main className="min-h-dvh w-dvw grid lg:grid-cols-2 overflow-hidden">
-      {/* Left Side - Cotton Candy Gradient */}
+      {/* Left Side - Wallpaper */}
       <div className="hidden lg:block w-full relative h-full">
         <div
-          className="absolute inset-0 z-0"
-          style={{
-            background: `linear-gradient(225deg, #FFB3D9 0%, #FFD1DC 20%, #FFF0F5 40%, #E6F3FF 60%, #D1E7FF 80%, #C7E9F1 100%)`
-          }}
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${wallpaper})` }}
         />
-        <div className="absolute inset-0 z-10 flex items-center justify-center p-12">
-          <div className="text-center space-y-6 max-w-md">
-            <h2 className="text-3xl font-bold text-gray-800">Join us today</h2>
-            <p className="text-lg text-gray-700">
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <div className="absolute inset-0 z-20 flex items-end p-12">
+          <div className="space-y-3 max-w-md">
+            <h2 className="text-3xl font-bold text-white drop-shadow-md">Join us today</h2>
+            <p className="text-lg text-white/90 drop-shadow">
               Create your account and start your journey with {realm.displayName}.
             </p>
           </div>
@@ -104,7 +105,16 @@ export default function Register(props: RegisterProps) {
       </div>
 
       {/* Right Side - Registration Form */}
-      <div className="w-full h-full flex flex-col overflow-auto bg-background">
+      <div className="relative w-full h-full flex flex-col overflow-auto bg-background">
+        {/* Subtle ambient glow so the form side isn't a flat empty panel */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-secondary/10 blur-3xl"
+        />
         {/* Header with Language Selector */}
         <div className="flex justify-end items-center p-4 gap-2">
           {enabledLanguages.length > 1 && (
@@ -129,19 +139,22 @@ export default function Register(props: RegisterProps) {
               </SelectContent>
             </Select>
           )}
+          <ThemeToggle />
         </div>
 
         {/* Form Content */}
-        <div className="flex-1 flex items-center justify-center p-6 md:p-10">
-          <div className="w-full max-w-md">
-            <Card className="flex flex-col gap-6 border-0 shadow-none lg:border lg:shadow-sm">
-              <CardHeader className="pb-0">
-                <CardTitle id="kc-page-title" className="text-2xl">
-                  {messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")}
-                </CardTitle>
-              </CardHeader>
+        <div className="relative z-10 flex-1 flex items-center justify-center p-6 md:p-10">
+          <div className="w-full max-w-md space-y-8">
+            <div className="space-y-1.5">
+              <h1 id="kc-page-title" className="text-3xl font-bold tracking-tight">
+                {messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")}
+              </h1>
+              <p className="text-base text-muted-foreground">
+                Create your <span className="font-medium text-foreground">{realm.displayName}</span> account
+              </p>
+            </div>
 
-              <CardContent className="space-y-6">
+            <div className="space-y-6">
                 {/* Alert Messages */}
                 {displayMessage && message !== undefined && (
                   <Alert variant={message.type}>
@@ -190,7 +203,7 @@ export default function Register(props: RegisterProps) {
                   <div className="space-y-4 pt-2">
                     {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
                       <Button
-                        className="w-full g-recaptcha"
+                        className="w-full h-11 text-base font-semibold g-recaptcha"
                         data-sitekey={recaptchaSiteKey}
                         data-callback="onSubmitRecaptcha"
                         data-action={recaptchaAction}
@@ -201,7 +214,7 @@ export default function Register(props: RegisterProps) {
                     ) : (
                       <Button
                         disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
-                        className="w-full"
+                        className="w-full h-11 text-base font-semibold"
                         type="submit"
                       >
                         {msgStr("doRegister")}
@@ -211,14 +224,13 @@ export default function Register(props: RegisterProps) {
                     {/* Back to Login Link */}
                     <div className="text-center text-sm text-muted-foreground">
                       Already have an account?{" "}
-                      <Button variant="link" asChild className="p-0 h-auto">
+                      <Button variant="link" asChild className="p-0 h-auto font-medium text-primary">
                         <a href={url.loginUrl}>{msg("backToLogin")}</a>
                       </Button>
                     </div>
                   </div>
                 </form>
-              </CardContent>
-            </Card>
+            </div>
           </div>
         </div>
       </div>
@@ -245,18 +257,17 @@ function TermsAcceptance(props: {
           {msg("termsText")}
         </div>
       </div>
-      <div className="flex items-center space-x-3">
+      <Label htmlFor="termsAccepted" className="flex items-center gap-2.5 cursor-pointer py-1 text-sm font-normal text-foreground">
         <Checkbox
           id="termsAccepted"
           name="termsAccepted"
           checked={areTermsAccepted}
           onCheckedChange={(checked) => onAreTermsAcceptedValueChange(checked === true)}
           aria-invalid={messagesPerField.existsError("termsAccepted")}
+          className="size-5"
         />
-        <Label htmlFor="termsAccepted" className="text-sm">
-          {msg("acceptTerms")}
-        </Label>
-      </div>
+        {msg("acceptTerms")}
+      </Label>
       {messagesPerField.existsError("termsAccepted") && (
         <p
           id="input-error-terms-accepted"

@@ -14,6 +14,7 @@ import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { AlertOctagon, AlertTriangle, CircleCheck, Info, RefreshCcw } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 import Logo from "./assets/logo_phase_slash.svg";
 
@@ -63,7 +64,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+    <div className="relative flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <ThemeToggle className="absolute right-4 top-4" />
       <div className={clsx("w-full max-w-sm", kcClsx("kcLoginClass"))}>
         <div id="kc-header" className={kcClsx("kcHeaderClass")}>
           <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>

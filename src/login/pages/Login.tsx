@@ -17,11 +17,13 @@ import { FormItemCustom, FormMessageCustom } from "@/components/ui/form";
 import { Eye, EyeClosed } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertOctagon, AlertTriangle, CircleCheck, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
+import wallpaper from "../assets/wallpaper.jpg";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
   const { kcContext, i18n, doUseDefaultCss, classes } = props;
@@ -61,18 +63,17 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
   return (
     <main className="min-h-dvh w-dvw grid lg:grid-cols-2 overflow-hidden">
-      {/* Left Side - Cotton Candy Gradient */}
+      {/* Left Side - Wallpaper */}
       <div className="hidden lg:block w-full relative h-full">
         <div
-          className="absolute inset-0 z-0"
-          style={{
-            background: `linear-gradient(225deg, #FFB3D9 0%, #FFD1DC 20%, #FFF0F5 40%, #E6F3FF 60%, #D1E7FF 80%, #C7E9F1 100%)`
-          }}
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${wallpaper})` }}
         />
-        <div className="absolute inset-0 z-10 flex items-center justify-center p-12">
-          <div className="text-center space-y-6 max-w-md">
-            <h2 className="text-3xl font-bold text-gray-800">Welcome back</h2>
-            <p className="text-lg text-gray-700">
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <div className="absolute inset-0 z-20 flex items-end p-12">
+          <div className="space-y-3 max-w-md">
+            <h2 className="text-3xl font-bold text-white drop-shadow-md">Welcome back</h2>
+            <p className="text-lg text-white/90 drop-shadow">
               Sign in to continue your journey with {realm.displayName}.
             </p>
           </div>
@@ -80,7 +81,16 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full h-full flex flex-col overflow-auto bg-background">
+      <div className="relative w-full h-full flex flex-col overflow-auto bg-background">
+        {/* Subtle ambient glow so the form side isn't a flat empty panel */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-secondary/10 blur-3xl"
+        />
         {/* Header with Language Selector */}
         <div className="flex justify-end items-center p-4 gap-2">
           {enabledLanguages.length > 1 && (
@@ -105,19 +115,22 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
               </SelectContent>
             </Select>
           )}
+          <ThemeToggle />
         </div>
 
         {/* Form Content */}
-        <div className="flex-1 flex items-center justify-center p-6 md:p-10">
-          <div className="w-full max-w-md">
-            <Card className="flex flex-col gap-6 border-0 shadow-none lg:border lg:shadow-sm">
-              <CardHeader className="pb-0">
-                <CardTitle id="kc-page-title" className="text-2xl">
-                  {msg("loginAccountTitle")}
-                </CardTitle>
-              </CardHeader>
+        <div className="relative z-10 flex-1 flex items-center justify-center p-6 md:p-10">
+          <div className="w-full max-w-md space-y-8">
+            <div className="space-y-1.5">
+              <h1 id="kc-page-title" className="text-3xl font-bold tracking-tight">
+                {msg("loginAccountTitle")}
+              </h1>
+              <p className="text-base text-muted-foreground">
+                Continue to <span className="font-medium text-foreground">{realm.displayName}</span>
+              </p>
+            </div>
 
-              <CardContent className="space-y-6">
+            <div className="space-y-6">
                 {/* Alert Messages */}
                 {displayMessage && message !== undefined && (
                   <Alert variant={message.type}>
@@ -146,7 +159,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         {!usernameHidden && (
                           <div>
                             <FormItemCustom>
-                              <Label htmlFor="username">
+                              <Label htmlFor="username" className="text-sm font-medium text-foreground">
                                 {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
                               </Label>
                               <Input
@@ -157,6 +170,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                 type="text"
                                 autoFocus
                                 autoComplete="username"
+                                className="h-11 text-base md:text-sm"
                                 aria-invalid={messagesPerField.existsError("username", "password")}
                               />
                               {messagesPerField.existsError("username", "password") && (
@@ -169,7 +183,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         )}
 
                         <FormItemCustom>
-                          <Label htmlFor="password">
+                          <Label htmlFor="password" className="text-sm font-medium text-foreground">
                             {msg("password")}
                           </Label>
                           <PasswordWrapper i18n={i18n} passwordInputId="password">
@@ -179,6 +193,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                               name="password"
                               type="password"
                               autoComplete="current-password"
+                              className="h-11 text-base md:text-sm"
                               aria-invalid={messagesPerField.existsError("username", "password")}
                             />
                           </PasswordWrapper>
@@ -201,14 +216,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         >
                           {realm.rememberMe && !usernameHidden && (
                             <div id="kc-form-options">
-                              <div className="flex items-center gap-3">
-                                <Checkbox tabIndex={5} id="rememberMe" name="rememberMe" defaultChecked={!!login.rememberMe} />
-                                <Label htmlFor="rememberMe">{msg("rememberMe")}</Label>
-                              </div>
+                              <Label htmlFor="rememberMe" className="flex items-center gap-2.5 cursor-pointer py-1 text-sm font-normal text-foreground">
+                                <Checkbox tabIndex={5} id="rememberMe" name="rememberMe" defaultChecked={!!login.rememberMe} className="size-5" />
+                                {msg("rememberMe")}
+                              </Label>
                             </div>
                           )}
                           {realm.resetPasswordAllowed && (
-                            <Button variant="link" asChild className="p-0 h-auto">
+                            <Button variant="link" asChild className="p-0 h-auto font-medium text-primary">
                               <a tabIndex={6} href={url.loginResetCredentialsUrl}>
                                 {msg("doForgotPassword")}
                               </a>
@@ -221,7 +236,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                           <Button
                             tabIndex={7}
                             disabled={isLoginButtonDisabled}
-                            className="w-full"
+                            className="w-full h-11 text-base font-semibold"
                             name="login"
                             id="kc-login"
                             type="submit"
@@ -242,7 +257,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         <Separator className="w-full" />
                       </div>
                       <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-card px-2 text-muted-foreground">
+                        <span className="bg-background px-2 text-muted-foreground">
                           {msg("identity-provider-login-label")}
                         </span>
                       </div>
@@ -278,8 +293,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                     </Button>
                   </div>
                 )}
-              </CardContent>
-            </Card>
+            </div>
           </div>
         </div>
       </div>
@@ -297,16 +311,17 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
     <div className="relative">
       {cloneElement(children, {
         type: isPasswordRevealed ? "text" : "password",
-        className: clsx(children.props.className, "pr-10")
+        className: clsx(children.props.className, "pr-12")
       })}
       <button
         type="button"
         onClick={toggleIsPasswordRevealed}
         aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
+        aria-pressed={isPasswordRevealed}
         aria-controls={passwordInputId}
-        className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
+        className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
       >
-        {isPasswordRevealed ? <Eye className="w-4 h-4" /> : <EyeClosed className="w-4 h-4" />}
+        {isPasswordRevealed ? <Eye className="size-5" /> : <EyeClosed className="size-5" />}
       </button>
     </div>
   );
